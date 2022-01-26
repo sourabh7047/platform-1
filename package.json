@@ -1,0 +1,22 @@
+{
+  "name": "nftgarage",
+  "version": "1.0.0",
+  "description": "NFT Garage Platform",
+  "main": "server.js",
+  "scripts": {
+    "start": "NODE_ENV=production pm2 start server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "Adeesh",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "concurrently": "^7.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^14.3.2",
+    "express": "^4.17.2",
+    "nodemon": "^2.0.15"
+  }
+}
