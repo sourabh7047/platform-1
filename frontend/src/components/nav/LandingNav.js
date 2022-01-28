@@ -2,26 +2,25 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import LogoText from "../../assets/nftg-text.svg";
-import NFTGLogo from "../../assets/nftg-horizontal-logo.svg";
+import NFTGLogo from "../../assets/nftg-plain.svg";
 import { ShineButton } from "../Buttons/ShineButton";
+import { FaBorderNone } from "react-icons/fa";
 
 function LandingNav() {
   return (
     <NavWrap>
       <LogoName src={LogoText} />
-      <HorizontalLogo src={NFTGLogo} />
+      <HorizontalLogo style={{ padding: "5px" }} src={NFTGLogo} />
       <ContentWrapper>
         <ContentList>
           <ContentItem>
-            <Link to="/discover">
+            <Link style={{ textDecoration: "none" }} to="/discover">
               {" "}
-              <ShineButton> Discover</ShineButton>
+              <ShineButton>Discover</ShineButton>{" "}
             </Link>
           </ContentItem>
 
-          <ContentItem showOnMedia={true}>
-            <ShineButton>Enter App</ShineButton>{" "}
-          </ContentItem>
+          <ContentItem showOnMedia={true}></ContentItem>
         </ContentList>
       </ContentWrapper>
     </NavWrap>
@@ -75,6 +74,6 @@ const ContentItem = styled.li`
   padding: 0px 20px;
 
   @media (max-width: 832px) {
-    display: none;
+    // display: none;
   }
 `;

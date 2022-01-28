@@ -52,6 +52,11 @@ const GlassButton = styled.button`
   box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3) ,
     0 0 9px 3px rgba(255, 255, 255, 0.3) !important;
 
+    @media (max-width: 475px) {
+      height: 50px !important;
+      width: 50px !important;
+    }
+
   &:after {
     animation: ${shine} 5s ease-in-out infinite;
     animation-fill-mode: forwards;

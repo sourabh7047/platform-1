@@ -1,69 +1,70 @@
-import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
-import { Link } from 'react-router-dom'
-import { IconContext } from 'react-icons/lib'
-import * as FaIcons from 'react-icons/fa'
-import HorizontalIcon from '../../assets/nftg-horizontal-logo.svg'
-import PlainLogo from '../../assets/nftg-plain.svg'
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { IconContext } from "react-icons/lib";
+import * as FaIcons from "react-icons/fa";
+import HorizontalIcon from "../../assets/nftg-horizontal-logo.svg";
+import PlainLogo from "../../assets/nftg-plain.svg";
 
-import { useDispatch, useSelector } from 'react-redux'
-import { connect, disconnect } from '../../redux/blockchain/blockchainActions'
-import { fetchData } from '../../redux/data/dataActions'
+import { useDispatch, useSelector } from "react-redux";
+import { connect, disconnect } from "../../redux/blockchain/blockchainActions";
+import { fetchData } from "../../redux/data/dataActions";
+import { ShineButton } from "../Buttons/ShineButton";
 
-import twitterLogo from '../../assets/twitter.png'
-import discordLogo from '../../assets/discord.png'
+import twitterLogo from "../../assets/twitter.png";
+import discordLogo from "../../assets/discord.png";
 
-import { GlassyIcons, GlassyIconsStrip } from '../Buttons/GlassyIcons'
+import { GlassyIcons, GlassyIconsStrip } from "../Buttons/GlassyIcons";
 import {
   faFacebook,
   faTwitter,
   faDiscord,
-} from '@fortawesome/free-brands-svg-icons'
+} from "@fortawesome/free-brands-svg-icons";
 
 const WalletCard = () => {
   // const [userBalance, setUserBalance] = useState(null)
-  const [connButtonText, setConnButtonText] = useState('Connect')
-  const dispatch = useDispatch()
-  const blockchain = useSelector((state) => state.blockchain)
+  const [connButtonText, setConnButtonText] = useState("Connect");
+  const dispatch = useDispatch();
+  const blockchain = useSelector((state) => state.blockchain);
   // const data = useSelector(state => state.data)
-  const account = blockchain.account
+  const account = blockchain.account;
   useEffect(() => {
-    if (blockchain.account !== '' && blockchain.smartContract !== null) {
-      dispatch(fetchData(blockchain.account))
+    if (blockchain.account !== "" && blockchain.smartContract !== null) {
+      dispatch(fetchData(blockchain.account));
 
       if (account) {
         setConnButtonText(
-          account.substring(0, 4) + '___' + account.substring(38, 42)
-        )
+          account.substring(0, 4) + "___" + account.substring(38, 42)
+        );
       } else {
-        setConnButtonText('Connect')
-        dispatch(disconnect())
+        setConnButtonText("Connect");
+        dispatch(disconnect());
       }
     }
-  }, [blockchain.smartContract, blockchain.account, dispatch, account])
+  }, [blockchain.smartContract, blockchain.account, dispatch, account]);
 
   //setConnButtonText(data.name?.substring(0, 4) + "___" + data.name?.substring(38, 42));
 
   const handleConnectClick = (e) => {
-    e.preventDefault()
-    if (blockchain.account === '' || blockchain.smartContract === null) {
-      dispatch(connect())
+    e.preventDefault();
+    if (blockchain.account === "" || blockchain.smartContract === null) {
+      dispatch(connect());
     } else {
       if (account) {
         alert(
           `You are already connected with wallet ${account}. If you wish to change it please use metamask.`
-        )
+        );
       } else {
-        dispatch(connect())
+        dispatch(connect());
       }
     }
-  }
+  };
 
   return (
     <ConnectButton
       isConnected={
         account &&
-        (blockchain.account === '' || blockchain.smartContract !== null)
+        (blockchain.account === "" || blockchain.smartContract !== null)
       }
       onClick={handleConnectClick}
     >
@@ -74,8 +75,8 @@ const WalletCard = () => {
       /> */}
       {connButtonText}
     </ConnectButton>
-  )
-}
+  );
+};
 
 const TopNav = ({ sidebarToggle, showSidebar }) => {
   /*
@@ -85,9 +86,9 @@ const TopNav = ({ sidebarToggle, showSidebar }) => {
 
   return (
     <>
-      <IconContext.Provider value={{ color: '#fff' }}>
+      <IconContext.Provider value={{ color: "#fff" }}>
         <Nav>
-          <NavIcon to='#'>
+          <NavIcon to="#">
             <HorizontalLogo src={PlainLogo} />
           </NavIcon>
 
@@ -120,54 +121,57 @@ const TopNav = ({ sidebarToggle, showSidebar }) => {
 
               <GlassyIconsStrip
                 style={{
-                  paddingTop: '1rem',
-                  display: 'flex',
-                  justifyContent: 'space-around',
+                  paddingTop: "1rem",
+                  display: "flex",
+                  justifyContent: "space-around",
                 }}
               >
                 <GlassyIcons
-                  routepath='/test'
-                  color='#fff'
+                  routepath="/test"
+                  color="#fff"
                   icon={faFacebook}
-                  iconSize='xs'
-                  height='50px'
-                  width='50px'
+                  iconSize="xs"
+                  height="50px"
+                  width="50px"
                 />
                 <GlassyIcons
-                  routepath='/test'
-                  color='#fff'
+                  routepath="/test"
+                  color="#fff"
                   icon={faTwitter}
-                  iconSize='xs'
-                  height='50px'
-                  width='50px'
+                  iconSize="xs"
+                  height="50px"
+                  width="50px"
                 />
                 <GlassyIcons
-                  routepath='/test'
-                  color='#fff'
+                  routepath="/test"
+                  color="#fff"
                   icon={faDiscord}
-                  iconSize='xs'
-                  height='50px'
-                  width='50px'
+                  iconSize="xs"
+                  height="50px"
+                  width="50px"
                 />
               </GlassyIconsStrip>
             </SocialsWrapper>
             <WalletCard />
 
             {/* only for small devices */}
-            <NavIconCross to='#'>
+            <NavIconCross to="#">
               <FaIcons.FaBars onClick={sidebarToggle} />
             </NavIconCross>
           </RightPlacement>
         </Nav>
       </IconContext.Provider>
     </>
-  )
-}
+  );
+};
 
-export default TopNav
+export default TopNav;
 
 const Nav = styled.div`
-  background-color: transparent;
+  background: ${() =>
+    window.screenY > "90px" ? "rgba(146, 64, 255, 0.4);" : "transparent;"};
+  transition: ${() =>
+    window.screenY > "90px" ? "background-color 200ms linear;" : "none;"};
   position: sticky;
   top: 0;
   height: 90px;
@@ -180,7 +184,7 @@ const Nav = styled.div`
   @media (min-width: 992px) {
     width: 100vw;
   }
-`
+`;
 
 const NavIcon = styled(Link)`
   text-decoration: none;
@@ -191,20 +195,20 @@ const NavIcon = styled(Link)`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-`
+`;
 
 const NavIconCross = styled(NavIcon)`
   margin-right: 10px;
   @media (min-width: 992px) {
     display: none;
   }
-`
+`;
 
 const SocialAnchor = styled.a`
   &:hover {
     opacity: 0.5;
   }
-`
+`;
 const SocialsWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
@@ -212,28 +216,47 @@ const SocialsWrapper = styled.div`
   @media (max-width: 850px) {
     display: none;
   }
-`
+`;
 
-const ConnectButton = styled.div`
-  background-color: rgba(23, 26, 32, 0.8);
+const ConnectButton = styled(ShineButton)`
   border: ${(props) =>
-    props.isConnected ? 'solid 1px #86dc3d;' : 'solid 1px red;'};
-  height: 40px;
-  width: 145px;
-  color: white;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  border-radius: 5px;
-  opacity: 0.85;
-  text-transform: uppercase;
-  font-size: ${(props) => (!props.isConnected ? '20px;' : '15px;')};
-  margin: 8px;
+    props.isConnected
+      ? "solid 1px rgba(146, 64, 255, 0.7);"
+      : "solid 2px #fff;"} !important;
 
-  &:hover {
-    opacity: 0.65;
+  color: ${(props) =>
+    props.isConnected
+      ? "solid 1px #fff;"
+      : "rgba(146, 64, 255, 0.7);"} !important;
+
+  height: 50px;
+  border-radius: 10px !important;
+
+  @media (max-width: 425px) {
+    transform: scale(0.8);
   }
-`
+`;
+
+// const ConnectButton = styled.div`
+//   background-color: rgba(23, 26, 32, 0.8);
+//   border: ${(props) =>
+//     props.isConnected ? "solid 1px #86dc3d;" : "solid 1px red;"};
+//   height: 40px;
+//   width: 145px;
+//   color: white;
+//   display: flex;
+//   justify-content: space-around;
+//   align-items: center;
+//   border-radius: 5px;
+//   opacity: 0.85;
+//   text-transform: uppercase;
+//   font-size: ${(props) => (!props.isConnected ? "20px;" : "15px;")};
+//   margin: 8px;
+
+//   &:hover {
+//     opacity: 0.65;
+//   }
+// `;
 
 const RightPlacement = styled.div`
   display: flex;
@@ -247,7 +270,7 @@ const RightPlacement = styled.div`
     padding: 0 10px;
     flex-wrap: nowrap;
   }
-`
+`;
 
 const HorizontalLogo = styled.img`
   height: 80px;
@@ -256,4 +279,4 @@ const HorizontalLogo = styled.img`
   @media (max-width: 992px) {
     display: inline;
   }
-`
+`;

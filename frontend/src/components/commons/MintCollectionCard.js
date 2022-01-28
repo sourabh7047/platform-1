@@ -100,9 +100,3 @@ const Card = styled.div`
     flex-direction: row;
   }
 `;
-
-const ListIcon = styled.li`
-  position: relative;
-  list-style: none;
-  margin: 10px;
-`;

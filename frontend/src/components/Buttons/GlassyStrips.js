@@ -4,11 +4,11 @@ import styled from "styled-components";
 // TO ARRANGE THE ICONS HORIZONTALLY ON A STRIP USE THIS COMPONENT
 const GlassyIconsStrip = ({ children, flexDirection, padding }) => {
   return (
-    <ListIcon>
+    <Div>
       <WrapGlassyIcons flexDirection={flexDirection} padding={padding}>
         {children}
       </WrapGlassyIcons>
-    </ListIcon>
+    </Div>
   );
 };
 
@@ -17,6 +17,7 @@ const Div = styled.div``;
 const WrapGlassyIcons = styled.ul`
   position: relative;
   display: flex;
+  flex-shrink: 3;
   align-items: center;
   flex-direction: ${(props) => props.flexDirection || "row"};
   padding: ${(props) => props.padding || "16px"};
@@ -29,3 +30,4 @@ const ListIcon = styled.li`
 `;
 
 export default GlassyIconsStrip;
+export { WrapGlassyIcons };

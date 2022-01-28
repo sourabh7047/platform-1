@@ -29,6 +29,12 @@ const GlassDiv = styled.div`
   line-height: 50px;
   font-family: sans-serif;
 
+  @media (max-width: 475px) {
+    height: 6.8rem !important;
+    width: 6.8rem !important;
+    font-size: 1.8rem;
+  }
+
   border: 2px solid #fff;
   border-radius: 5px;
   box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2),
